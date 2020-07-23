@@ -1,5 +1,7 @@
 # Media list
 
+![Screenshot](mediaList.png)
+
 ## Installation
 
 ```bash
