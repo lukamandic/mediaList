@@ -17,10 +17,10 @@ function Header (props: any) {
                 <li>
 
                     {
-                        props.page == 'albums' ? 
+                        props.page === 'albums' ? 
                         <>
                             <input autoFocus value={props.value}  onChange={handleChange} className="search" type="search" placeholder="Search" id="search" name="search" />
-                            <img className="searchIcon" src="./shape@2x.png" />
+                            <img alt="" className="searchIcon" src="./shape@2x.png" />
                         </>
                         : <></>
                     }

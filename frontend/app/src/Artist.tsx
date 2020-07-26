@@ -7,8 +7,8 @@ function AlbumsList(props: any) {
   const [artists, setArtists] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(async () => {
-    await fetch(
+  useEffect(() => {
+    fetch(
       `http://localhost:3004/artists/${props.match.params.id}`,
       {
         method: "GET"
@@ -20,7 +20,7 @@ function AlbumsList(props: any) {
         setIsLoading(false);
       })
       .catch(error => console.log(error));
-  }, []);
+  }, [props.match.params.id]);
 
   useEffect(() => {
     fetch(
@@ -32,12 +32,10 @@ function AlbumsList(props: any) {
       .then(res => res.json())
       .then(response => {
         setAlbums(response);
-        console.log('ALBUMSSS')
-        console.log(albums)
         setIsLoading(false);
       })
       .catch(error => console.log(error));
-  }, [])
+  }, [props.match.params.id])
 
   function favoriteChange(value: any) {
     fetch(

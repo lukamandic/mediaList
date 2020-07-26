@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react';
 import List from './components/List'
 import Header from './components/Header'
 import Artist from './Artist'
-import { useQuery } from '@apollo/react-hooks';
-import gql from "graphql-tag";
 import queryString from 'query-string'
 import { Route } from 'react-router-dom'
-import axios from 'axios'
 
 function AlbumsList() {
 
@@ -23,7 +20,7 @@ function AlbumsList() {
       newValue.preventDefault()
       setValue(newValue.target.value);
       let query
-      value != '' ? query = `http://localhost:3004/albums?q=${value}` : query ='http://localhost:3004/albums'
+      value !== '' ? query = `http://localhost:3004/albums?q=${value}` : query ='http://localhost:3004/albums'
       fetch(
         query,
         {
@@ -53,7 +50,7 @@ function AlbumsList() {
         setArtists(response);
       })
       .catch(error => console.log(error));
-  }, []);
+  }, [limiter]);
 
   useEffect(() => {
     let query
@@ -70,7 +67,7 @@ function AlbumsList() {
         setIsLoading(false);
       })
       .catch(error => console.log(error));
-  }, [])
+  }, [limiter])
 
   function favoriteChange(value: any) {
     fetch(

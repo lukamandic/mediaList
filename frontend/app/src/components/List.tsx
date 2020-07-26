@@ -1,7 +1,5 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom'
-import { useLazyQuery } from "@apollo/react-hooks"
-import gql from "graphql-tag";
+import { Link } from 'react-router-dom'
 import ArtistLink from './ArtistLink'
 
 function List(props: any) {
@@ -17,31 +15,9 @@ function List(props: any) {
     }
 
     function foundArtist(id: number): any {
-        return artists.find((artist: any) => artist.id == id)
+        return artists.find((artist: any) => artist.id === id)
     }
 
-    /*function favoriteEdit(variables: any) {
-        console.log(variables.variables)
-        fetch(
-            `http://localhost:3004/albums/${variables.variables.id}`,
-            {
-              method: "PUT",
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(variables.variables),
-            }
-          )
-            .then(res => res.json())
-            .then(response => {
-              //setAlbums(response);
-              //setIsLoading(false);
-              console.log(response)
-            })
-            .catch(error => console.log(error));
-    }*/
-
-    //console.log(props)
     const albums = props.albums ? props.albums : null
     const artists = props.artists ? props.artists : null
 
@@ -55,12 +31,16 @@ function List(props: any) {
                     return (
                     <div className="list" key={e.id}>
                         <img alt="album cover" className="albumImg" src={e.imageUrl} />
+                        
+                        {
+                            e.favorite ? <img alt="" className="favoriteIcon" src="./fill-1@3x.png" /> : <></>
+                        }
 
                         <div className="artistAlbum">
                             <p className="album">{e.title}</p><br />
 
                             {   
-                                props.page == "artist" ? <ArtistLink artist={props.artists} /> : <Link to={`/artist/${e.artistId}`}>{foundArtist(e.artistId).title}</Link> 
+                                props.page === "artist" ? <ArtistLink artist={artists} /> : <Link to={`/artist/${e.artistId}`}>{foundArtist(e.artistId).title}</Link> 
                             }
 
                             
