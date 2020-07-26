@@ -5,6 +5,31 @@
 
 html, body {
   overflow-x: hidden;
+  height: 100%;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid blue;
+  border-bottom: 16px solid blue;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .body {
@@ -12,6 +37,7 @@ html, body {
   background-color: #f9f9f9;
   padding-left: 180px;
   padding-right: 180px;
+  height: 100%;
 }
 
 .albumImg {
@@ -143,9 +169,11 @@ input {
 
 .searchIcon {
   position: relative;
-  left: 390px; 
-  top: -29px;
-  color: #828282;
+  width: 15px;
+  height: 15px;
+  left: -28px;
+  top: 2px;
+  z-index: 999;
 }
 
 .album {
@@ -154,6 +182,9 @@ input {
   font-weight: medium;
   font-size: 18px;
   letter-spacing: -0.66px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .artistLink {
@@ -175,6 +206,20 @@ a {
   letter-spacing: -0.44px;
 }
 
+.noData {
+  font-family: 'Work Sans';
+  font-weight: medium;
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.error {
+  font-family: 'Work Sans';
+  font-weight: medium;
+  text-align: center;
+  padding-bottom: 50px;
+}
+
 @media only screen and (max-width: 1000px) {
   .search {
     width: 350px;
@@ -187,6 +232,12 @@ a {
   .nav {
     padding-left: 80px;
     padding-right: 80px;
+  }
+  .loader {
+    top: 45%;
+    left: 45%;
+    width: 60px;
+    height: 60px;
   }
 }
 
@@ -208,6 +259,12 @@ a {
     padding-left: 10px;
     padding-right: 10px;
   }
+  .loader {
+    top: 45%;
+    left: 40%;
+    width: 60px;
+    height: 60px;
+  }
   .albumImg { 
     margin-top: 27px;
     margin-left: 17.3px;
@@ -216,7 +273,7 @@ a {
     border-radius: 3px;
   }
   .album {
-    font-size: 13px;
+    font-size: 10px;
     text-overflow: ellipsis;
   }
   .artistAlbum {
@@ -224,12 +281,16 @@ a {
     margin-left: 10px;
     overflow:auto;
   }
+  .artistLink {
+    font-size: 10px;
+  }
   .price {
-    flex: 2 0 0;
+    font-size: 10px;
+    flex: 1 2 0;
   }
   .released {
-    font-size: 12px;
-    flex: 2 0 0;
+    font-size: 10px;
+    flex: 1 0 0;
   }
   .list {
     height: 100px;

@@ -1,59 +1,83 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import List from './components/List'
 import Header from './components/Header'
-import { useQuery } from '@apollo/react-hooks';
-import gql from "graphql-tag";
-
-const GET_ARTIST = gql`
-  query Artist($id: Int!) {
-      artist(id: $id) {
-        id
-        name
-        albums(id: $id) {
-          artist {
-            id
-            name
-          }
-          id
-          album
-          image
-        }
-      }
-    }
-` 
-
 function AlbumsList(props: any) {
 
-  console.log(props)
+  const [albums, setAlbums] = useState([]);
+  const [artists, setArtists] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
-  const { data, loading, error } = useQuery(GET_ARTIST, { variables: { id: Number(props.match.params.id) } })
+  useEffect(async () => {
+    await fetch(
+      `http://localhost:3004/artists/${props.match.params.id}`,
+      {
+        method: "GET"
+      }
+    )
+      .then(res => res.json())
+      .then(response => {
+        setArtists(response);
+        setIsLoading(false);
+      })
+      .catch(error => console.log(error));
+  }, []);
 
-  console.log(data)
-  console.log(error)
+  useEffect(() => {
+    fetch(
+      `http://localhost:3004/albums?artistId=${props.match.params.id}`,
+      {
+        method: "GET"
+      }
+    )
+      .then(res => res.json())
+      .then(response => {
+        setAlbums(response);
+        console.log('ALBUMSSS')
+        console.log(albums)
+        setIsLoading(false);
+      })
+      .catch(error => console.log(error));
+  }, [])
 
-  if (loading)  return(<p>Loading</p>)
+  function favoriteChange(value: any) {
+    fetch(
+    `http://localhost:3004/albums/${value.variables.id}`,
+    {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(value.variables),
+    }
+  )
+    .then(res => res.json())
+    .then(response => {
+      window.location.reload(false);
+      console.log(response)
+    })
+    .catch(error => console.log(error));
+  }
 
-  if (error) return(<p>Error</p>)
+  if (isLoading) return(<div className="loader"></div>)
+
+  //if (error) return(<p>Error</p>)
 
   return (
     <div className="App">
 
+      <Header headerTitle={"Artist"} page="artist" />
 
-      <Header headerTitle={data.artist.name} />
       <div className="body">
       {
-      data ?
-       
-      data.artist.albums ? 
+      albums.length > 0 ?
       
       <>
         <div>
-          <List entry={data.artist.albums} />
+          <List favoriteChange={favoriteChange} page="artist" albums={albums} artists={artists} />
         </div>
       </>
       
-      : <p>No data</p>
-      : <p>No data</p>
+      : <p className="noData">No data</p>
       }
       </div>
     </div>

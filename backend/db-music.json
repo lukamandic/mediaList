@@ -36,21 +36,21 @@
   "albums": [
     {
       "id": 0,
-      "title": "Lover",
-      "price": "$11.99",
       "imageUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music123/v4/20/6f/b5/206fb560-6fd5-15f9-0b68-88d309ffc5a6/19UMGIM53909.rgb.jpg/170x170bb.png",
+      "title": "Lover",
       "releaseDate": "2019-08-23T00:00:00-07:00",
       "artistId": 0,
+      "price": "$11.99",
       "favorite": false
     },
     {
       "id": 1,
-      "title": "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?",
-      "price": "$9.99",
       "imageUrl": "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/a7/31/24/a731244c-e065-2f44-63a2-d15b6b27fefa/00602577427657.rgb.jpg/170x170bb.png",
+      "title": "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?",
       "releaseDate": "2019-03-29T00:00:00-07:00",
       "artistId": 1,
-      "favorite": false
+      "price": "$9.99",
+      "favorite": true
     },
     {
       "id": 2,
@@ -63,11 +63,11 @@
     },
     {
       "id": 3,
-      "title": "Frozen 2 (Original Motion Picture Soundtrack)",
-      "price": "$9.99",
       "imageUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music123/v4/56/33/14/56331415-1036-71f5-a4ec-ec4e1065f69b/19UMGIM88564.rgb.jpg/170x170bb.png",
+      "title": "Frozen 2 (Original Motion Picture Soundtrack)",
       "releaseDate": "2019-11-15T00:00:00-07:00",
       "artistId": 3,
+      "price": "$9.99",
       "favorite": false
     },
     {
@@ -90,11 +90,11 @@
     },
     {
       "id": 6,
-      "title": "reputation",
-      "price": "$13.99",
       "imageUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music118/v4/0b/c3/63/0bc363c3-c0a2-7526-ac4a-82de7483ba64/00843930033133.rgb.jpg/170x170bb.png",
+      "title": "reputation",
       "releaseDate": "2017-11-10T00:00:00-07:00",
       "artistId": 0,
+      "price": "$13.99",
       "favorite": false
     },
     {
